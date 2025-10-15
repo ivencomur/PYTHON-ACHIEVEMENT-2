@@ -1,11 +1,11 @@
 #!/bin/bash
 # Sync changes to both repositories
 
-echo "Ì≥¶ Staging all changes..."
+echo "ÔøΩÔøΩÔøΩ Staging all changes..."
 git add .
 
 echo ""
-read -p "Ì≥ù Commit message: " msg
+read -p "ÔøΩÔøΩÔøΩ Commit message: " msg
 
 if [ -z "$msg" ]; then
     echo "‚ùå Commit message required"
@@ -13,14 +13,14 @@ if [ -z "$msg" ]; then
 fi
 
 echo ""
-echo "Ì≤æ Committing..."
+echo "ÔøΩÔøΩÔøΩ Committing..."
 git commit -m "$msg"
 
-echo "Ì≥§ Pushing to PYTHON-ACHIEVEMENT-2 (EXERCISE-2.4 branch)..."
-git push origin EXERCISE-2.4
+echo "ÔøΩÔøΩÔøΩ Pushing to PYTHON-ACHIEVEMENT-2 (EXERCISE-2.5 branch)..."
+git push origin EXERCISE-2.5
 
-echo "Ì≥§ Pushing to recipe-app (main branch)..."
-git push recipe-app EXERCISE-2.4:main
+echo "ÔøΩÔøΩÔøΩ Pushing to recipe-app (main branch)..."
+git push recipe-app EXERCISE-2.5:main
 
 echo ""
 echo "‚úÖ Synced to both repos!"
