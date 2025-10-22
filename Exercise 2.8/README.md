@@ -5,373 +5,376 @@ _Achievement 2 • CareerFoundry – Python for Web Developers_
 **Student:** Ivan Cortes
 **Repository:** `recipe-app` (Django-based Recipe Management System)
 
-**Current Exercise:** 2.8 - Deployment (In Progress)
-**Phase 1 Milestone:** ✅ About Me Page & Global Styling Complete
+**Status:** ✅ Achievement 2 Complete & Deployed!
+**Live Site:** [`https://recipe-app-ivan-cortes-8d505e6123c3.herokuapp.com/`](https://recipe-app-ivan-cortes-8d505e6123c3.herokuapp.com/)
 
-**Last Updated:** October 21, 2025
+**Last Updated:** October 22, 2025
 
 ---
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Learning Objectives](#learning-objectives)
-3. [Environment & Specs](#environment--specs)
-4. [Project Structure](#project-structure)
-5. [Installation & Setup (Windows + Git Bash)](#installation--setup-windows--git-bash)
-6. [Running the App](#running-the-app)
-7. [Deployment Guide (Exercise 2.8)](#deployment-guide-exercise-28)
-8. [Authentication & Access Control](#authentication--access-control)
-9. [Data Models](#data-models)
-10. [Testing](#testing)
-11. [Development Workflow](#development-workflow)
-12. [Known Issues & TODOs](#known-issues--todos)
-13. [Future Enhancements](#future-enhancements)
-14. [Resources](#resources)
-15. [Deliverables](#deliverables)
-16. [Technical Notes](#technical-notes)
-17. [Author & Links](#author--links)
-18. [AI Assistance Note](#ai-assistance-note)
-19. [Screenshots List](#screenshots-list)
+1.  [Overview](#overview)
+2.  [Live Application](#live-application)
+3.  [Learning Objectives](#learning-objectives)
+4.  [Environment & Specs](#environment--specs)
+5.  [Project Structure](#project-structure)
+6.  [Installation & Setup (Local Development)](#installation--setup-local-development)
+7.  [Running Locally](#running-locally)
+8.  [Deployment Summary (Exercise 2.8)](#deployment-summary-exercise-28)
+9.  [Authentication & Access Control](#authentication--access-control)
+10. [Data Models](#data-models)
+11. [Testing](#testing)
+12. [Development Workflow](#development-workflow)
+13. [Key Challenges & Solutions](#key-challenges--solutions)
+14. [Future Enhancements](#future-enhancements)
+15. [Resources](#resources)
+16. [Deliverables](#deliverables)
+17. [Technical Notes](#technical-notes)
+18. [Author & Links](#author--links)
+19. [AI Assistance Note](#ai-assistance-note)
+20. [Screenshots (Evidence)](#screenshots-evidence)
 
 ---
 
 ## Overview
-This Django web application evolves the command‑line Recipe App from **Achievement 1** into a full web application following Django's **MVT** (Model–View–Template) architecture. This project serves as the practical implementation for Achievement 2 of the CareerFoundry Python for Web Developers course.
+Hey there! This project is my journey through Achievement 2 of the CareerFoundry Python course. It started as a simple command-line Recipe App back in Achievement 1 and has now blossomed into a full-stack web application using Django's MVT (Model-View-Template) way of doing things. Building this felt like connecting all the dots – from designing databases and handling user logins to actually putting it online for the world to see (well, theoretically!).
 
-**Current scope (Completion of Exercise 2.7 + Phase 1 + Exercise 2.8 In Progress):**
-- Project with multiple Django apps (`recipes`, `sales`, `books`, etc.).
-- Recipe Management: Display of recipes with images and ingredients (via Many‑to‑Many `through` model). Media file handling configured.
-- User Authentication: Secure login/logout using Django's auth system. Recipe list, detail, and search views are protected.
-- Search & Filtering: A functional search page (`/recipes/search/`) allows filtering recipes by name, ingredients (OR logic), max cooking time, and difficulty via `RecipeSearchForm`.
-- Data Visualization: Dynamic generation and embedding of charts (bar, pie, line) based on search results using `pandas` and `matplotlib`.
-- Database & Admin: SQLite database managed via ORM and migrations. Models registered in Django Admin.
-- Testing: Unit tests cover models, URLs, forms (Ex 2.7), and views (Ex 2.7).
-- About Me Page: Professional About Me page (`/about/`) with consistent global styling matching LEARNING_JOURNAL design (Phase 1).
-- Deployment Ready: Production-grade configuration with environment variables, static file handling via WhiteNoise, and PaaS deployment support (Exercise 2.8).
+**What it Does Now (End of Achievement 2):**
+* **Organized Code:** Features are split into different Django apps like `recipes` (the main star) and `sales` (for the homepage).
+* **Recipe Management:** Shows a list of recipes, lets you click to see details, and even includes a search page.
+* **User Login/Logout:** Got a proper login system using Django's built-in tools. You need to be logged in to see the recipes!
+* **Smart Search:** The search page (`/recipes/search/`) lets you filter by name, ingredients (even if you only list some), cooking time, and difficulty.
+* **Cool Charts:** Based on your search results, the app can generate bar, pie, or line charts using `pandas` and `matplotlib` right on the webpage!
+* **Database Power:** Uses PostgreSQL on Heroku (the live version) and SQLite on my local machine. Django's ORM handles all the database stuff smoothly.
+* **Testing:** Wrote tests to make sure the models, forms, and views are working correctly.
+* **Looks Decent!:** Added CSS for consistent styling across the pages, including a new "About Me" page.
+* **It's Live!:** Deployed successfully to Heroku using professional tools like `Gunicorn` (web server), `WhiteNoise` (for CSS/JS), and environment variables (to keep secrets safe).
+* **Real Data:** Managed to migrate my 22 local recipes over to the live Heroku database, even after hitting some tricky encoding problems.
+
+---
+
+## Live Application
+Check out the deployed app here!
+
+**[`https://recipe-app-ivan-cortes-8d505e6123c3.herokuapp.com/`](https://recipe-app-ivan-cortes-8d505e6123c3.herokuapp.com/)**
+
+_(Remember, you'll need to log in to see most pages. The required mentor credentials are `mentorCF` / `Ment0r@CareerF0undry`)._
 
 ---
 
 ## Learning Objectives
-By the end of Achievement 2, key objectives include:
-- Implementing Django's MVT pattern.
-- Designing and migrating database models with relationships.
-- Configuring and handling static and media files.
-- Building FBVs and CBVs (`ListView`, `DetailView`).
-- Implementing user authentication and view protection.
-- Mastering URL routing including namespacing and dynamic URLs.
-- Creating and processing Django Forms.
-- Integrating data visualization libraries.
-- Writing comprehensive tests for various components.
-- Maintaining consistent styling and professional presentation across multiple pages.
-- Configuring Django applications for production deployment.
-- Deploying to Platform-as-a-Service (PaaS) providers.
+Looking back, Achievement 2 covered a ton of ground. I feel like I really got a handle on:
+* Using Django's **MVT pattern** – understanding how Models, Views, and Templates work together.
+* Designing **database models** with different fields and relationships (that `ManyToManyField` through `RecipeIngredient` was a big one!).
+* Getting **static files** (like CSS) and handling **media files** (like images) set up, including the headaches they cause in production!
+* Writing both simple **Function-Based Views** (FBVs) and the more powerful **Class-Based Views** (CBVs) like `ListView` and `DetailView`.
+* Implementing **user login/logout** and protecting pages so only logged-in users can see them (`LoginRequiredMixin` is magic!).
+* Setting up **URLs** properly, using namespaces so apps don't clash, and creating dynamic links (like `/recipes/1/`).
+* Building **Django Forms** to get user input for the search page.
+* Pulling in external libraries like `pandas` and `matplotlib` to add **data visualization**.
+* Writing **unit tests** to make sure things don't break when I make changes.
+* Making the app look consistent with **CSS** and adding pages like "About Me".
+* Figuring out all the settings and files needed for **production deployment** – `DEBUG=False`, environment variables, etc.
+* Actually **deploying to Heroku** with a real PostgreSQL database.
+* **Troubleshooting** like crazy when things inevitably went wrong during deployment (looking at you, encoding errors!).
 
 ---
 
 ## Environment & Specs
-- **Python:** 3.13.5 (Virtual environment `.venv`)
-- **Django:** 5.2.7
-- **Database:** SQLite (development) / PostgreSQL (production-ready)
-- **Key Libraries:** `Pillow`, `pandas`, `matplotlib`, `gunicorn`, `whitenoise`, `python-decouple`
-- **OS/Shell:** Windows / Git Bash
-- **IDE:** VS Code
-- **Version Control:** Git / GitHub
-- **Deployment:** PaaS-ready (Render, Heroku compatible)
+* **Python:** 3.13.5 (using `.venv`).
+* **Django:** 5.2.7.
+* **Database (Local):** SQLite.
+* **Database (Production):** PostgreSQL (Heroku Add-on).
+* **Key Libraries:** `Pillow`, `pandas`, `matplotlib`, `gunicorn`, `whitenoise`, `python-decouple`, `dj-database-url`, `psycopg2-binary`.
+* **OS/Shell:** Windows / Git Bash.
+* **IDE:** VS Code.
+* **Version Control:** Git / GitHub.
+* **Deployment Platform:** Heroku.
 
-> Activate virtual environment: `source .venv/Scripts/activate`
+> Activate local virtual environment: `source .venv/Scripts/activate`
 
 ---
 
 ## Project Structure
 ```text
 recipe-app/
-├── .venv/
-├── recipe_project/
-│   ├── settings.py
-│   ├── urls.py
-│   └── views.py (auth)
+├── .venv/                     # Virtual environment files (ignored by git)
+├── recipe_project/            # Django project config stuff
+│   ├── settings.py            # Main settings (reads from .env)
+│   ├── urls.py                # Main URL router
+│   ├── views.py               # Login/Logout/About views
+│   ├── wsgi.py                # For Gunicorn
+│   └── management/            # Custom commands folder
+│       └── commands/
+│           └── load_recipes_fixed.py # Script to fix data loading
 │
-├── recipes/
-│   ├── migrations/
-│   ├── templates/recipes/ (list, detail, search)
-│   ├── tests/ (incl. test_forms.py, test_views.py)
-│   ├── admin.py
-│   ├── forms.py (RecipeSearchForm)
-│   ├── models.py (Recipe incl. difficulty)
-│   ├── urls.py (incl. search)
-│   └── views.py (ListView, DetailView, recipe_search, generate_recipe_chart)
+├── recipes/                   # The main app for recipes!
+│   ├── migrations/            # Database changes history (now in git!)
+│   ├── templates/recipes/     # HTML pages for this app
+│   │   ├── recipes_list.html
+│   │   ├── recipes_detail.html
+│   │   └── search.html
+│   ├── tests/                 # Folder for test files
+│   │   ├── test_forms.py      # Tests for the search form
+│   │   └── tests_views.py     # Tests for the search view
+│   ├── admin.py               # How models look in /admin/
+│   ├── apps.py                # App config
+│   ├── forms.py               # The RecipeSearchForm definition
+│   ├── models.py              # Recipe, Ingredient, RecipeIngredient models
+│   ├── tests.py               # Model tests
+│   └── urls.py                # URLs just for the recipes app
 │
-├── sales/ (homepage)
-│   └── ...
+├── sales/                     # Simple app for the homepage
+│   ├── templates/sales/
+│   │   └── recipes_home.html  # Homepage HTML
+│   ├── urls.py                # Homepage URL
+│   └── views.py               # Homepage view function
 │
-├── templates/ (project-level auth & pages)
-│   ├── auth/
-│   └── about_me.html
+├── templates/                 # Project-wide templates
+│   ├── auth/                  # Login/logout pages
+│   │   ├── login.html
+│   │   └── logout_success.html
+│   └── about_me.html          # My About Me page
 │
-├── static/ (CSS, JS, images - collected via collectstatic)
+├── static/                    # CSS, JS, and placeholder image
+│   ├── css/style.css
+│   ├── js/app.js
+│   └── img/no_picture.jpg
 │
-├── media/ (user uploads)
-│
-├── books/, customers/, salespersons/ (example apps)
-│
-├── .env (environment variables - NOT committed)
-├── .gitignore
-├── db.sqlite3
-├── manage.py
-├── README.md
-├── requirements.txt (incl. pandas, matplotlib, gunicorn, whitenoise, python-decouple)
-├── Procfile (Heroku/Render deployment config)
-└── runtime.txt (Python version specification)
+├── .gitignore                 # Tells git what to ignore (like .env!)
+├── db.sqlite3                 # My local database (ignored by git)
+├── index.html                 # Main project documentation page/hub
+├── LEARNING_JOURNAL/          # All my learning journal HTML files
+├── manage.py                  # Django's helper script
+├── Procfile                   # Tells Heroku how to run the app
+├── requirements.txt           # List of all Python packages needed
+├── runtime.txt                # Tells Heroku which Python version
+└── recipes_data_utf8.json     # The recipe data, fixed for UTF-8 import
 
-# LEARNING_JOURNAL/ (Sibling directory)
-#   ├── LEARNING_JOURNAL_2.1_(8).html through LEARNING_JOURNAL_2.7_(14).html
-#   └── ...
+# External Repository for Course Deliverables:
+# PYTHON-ACHIEVEMENT-2/ (My separate repo for CareerFoundry)
+#   └── Exercise 2.8/
+#       └── screenshots/       # Contains test-report.jpg and others
+Installation & Setup (Local Development)
+Want to run this on your own machine? Here’s how:
 
-# PYTHON-ACHIEVEMENT-2/ (Separate repo)
-#   └── Exercise 2.7/screenshots/
-#       └── ...
-```
+Bash
 
-## Installation & Setup (Windows + Git Bash)
-```bash
-git clone https://github.com/ivencomur/recipe-app.git && cd recipe-app
+# 1. Get the code
+git clone [https://github.com/ivencomur/recipe-app.git](https://github.com/ivencomur/recipe-app.git)
+cd recipe-app
 
+# 2. Set up a virtual environment (important!)
+# Make sure you're using Python 3.13 or similar
 python -m venv .venv
+source .venv/Scripts/activate  # Or the command for your shell
 
-source .venv/Scripts/activate
-
+# 3. Install all the needed packages
 pip install -r requirements.txt
 
+# 4. Set up the local database (creates db.sqlite3)
 python manage.py migrate
 
+# 5. Create an admin user for yourself
 python manage.py createsuperuser
 
+# 6. (Optional but Recommended) Load the recipe data
+#    Make sure recipes_data_utf8.json is present
+python manage.py loaddata recipes_data_utf8.json
+#    (If this fails due to encoding, use the manual admin add method)
+
+# 7. Start the development server!
 python manage.py runserver
-```
-
-## Running the App
-- **Homepage:** http://127.0.0.1:8000/
-- **About Me:** http://127.0.0.1:8000/about/
-- **Login:** http://127.0.0.1:8000/login/
-- **Recipe List:** http://127.0.0.1:8000/recipes/ (Login required)
-- **Recipe Detail:** e.g., http://127.0.0.1:8000/recipes/1/ (Login required)
-- **Recipe Search:** http://127.0.0.1:8000/recipes/search/ (Login required)
-- **Admin:** http://127.0.0.1:8000/admin/
+Running Locally
+Once set up, you can access the different parts of the app:
 
-## Deployment Guide (Exercise 2.8)
+Homepage: http://127.0.0.1:8000/
 
-### Production Configuration
+About Me: http://127.0.0.1:8000/about/
 
-**1. Environment Variables (.env file)**
-```
-DEBUG=False
-SECRET_KEY=your-secret-key-here
-ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
-DATABASE_URL=postgres://user:password@localhost:5432/recipe_app_db
-```
+Login: http://127.0.0.1:8000/login/
 
-**2. Settings.py Updates for Production**
-```python
-# Use environment variables
-from decouple import config
+Recipe List: http://127.0.0.1:8000/recipes/ (Need to log in first!)
 
-DEBUG = config('DEBUG', default=False, cast=bool)
-SECRET_KEY = config('SECRET_KEY')
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
+Recipe Detail: e.g., http://127.0.0.1:8000/recipes/1/ (Need to log in)
 
-# Static files configuration
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+Recipe Search: http://127.0.0.1:8000/recipes/search/ (Need to log in)
 
-# CORS and security headers
-SECURE_SSL_REDIRECT = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
-```
+Admin Area: http://127.0.0.1:8000/admin/ (Use your superuser login)
 
-**3. Static Files Collection**
-```bash
-python manage.py collectstatic --noinput
-```
+Deployment Summary (Exercise 2.8)
+Getting this app live on Heroku was quite the adventure! Here’s the final setup:
 
-**4. Deployment to Render**
-- Create `Procfile`:
-```
-  web: gunicorn recipe_project.wsgi
-  release: python manage.py migrate
-```
-- Create `runtime.txt`:
-```
-  python-3.13.5
-```
-- Connect GitHub repository to Render
-- Set environment variables in Render dashboard
-- Deploy with automatic GitHub integration
+Platform: Heroku
 
-**5. Database Migration**
-```bash
-python manage.py migrate --settings=recipe_project.settings
-```
+Web Server: Gunicorn (handles incoming web requests)
 
-### Key Deployment Considerations
-- Use environment variables for secrets (never hardcode)
-- Enable HTTPS and secure cookies in production
-- Configure allowed hosts correctly
-- Use WhiteNoise for static file serving
-- Set up proper logging and error monitoring
-- Use PostgreSQL instead of SQLite for production
-- Implement database backups and recovery procedures
+Static Files: WhiteNoise (serves CSS, JS efficiently)
 
----
+Database: PostgreSQL (using Heroku's essential-0 paid add-on for persistence)
 
-## Authentication & Access Control
-Uses django.contrib.auth.
+Configuration: All secrets (like SECRET_KEY, DATABASE_URL) are stored safely as Heroku Config Vars and read using python-decouple. DEBUG is correctly set to False.
 
-Project-level views handle /login/, /logout/.
+Process: Heroku uses the Procfile to start Gunicorn (web process) and run database migrations (release process) automatically on deploy.
 
-RecipeListView, RecipeDetailView, recipe_search are protected (LoginRequiredMixin or @login_required).
+Python: Version specified in runtime.txt.
 
-LOGIN_URL = '/login/' redirects unauthenticated users.
+Data: 22 recipes successfully migrated from local SQLite using a custom script to handle tricky encoding issues.
 
-Templates use user.is_authenticated for conditional display.
+Images: Currently using placeholder URLs (via.placeholder.com) as a workaround for Heroku's temporary filesystem.
 
-## Data Models
-(Primary models)
+Authentication & Access Control
+Uses Django's standard django.contrib.auth system.
 
-Recipe: Includes name, description, cook_time_minutes, pic, ingredients (M2M via RecipeIngredient), difficulty, created_at.
+Login, logout, and logout success pages are handled by views in recipe_project/views.py.
 
-Ingredient: Includes name (unique).
+The main recipe list, detail, and search pages are protected – you get redirected to /login/ if you're not logged in (LoginRequiredMixin / @login_required).
 
-RecipeIngredient: Links Recipe and Ingredient with quantity and unit. unique_together constraint.
+Templates check user.is_authenticated to show different buttons/links (e.g., Login vs Logout).
 
-## Testing
-Run with: python manage.py test recipes (or python manage.py test recipes.tests)
+Data Models
+(Defined in recipes/models.py)
 
-Covers models (validation, relationships, get_absolute_url), forms (Ex 2.7), and views (auth, filtering, context - Ex 2.7).
+Recipe: Stores the main info: name (text), description (longer text), cook_time_minutes (positive number), difficulty (choices: Easy, Medium, Hard), created_at (auto-timestamp), and pic (text field holding the placeholder URL).
 
-## Development Workflow
-(Standard Git flow: branch -> code -> test -> commit -> push -> merge)
+Ingredient: Simple list of unique ingredient names.
 
-## Known Issues & TODOs
+RecipeIngredient: This is the important "join table" that connects Recipes and Ingredients. It stores the quantity and unit for each ingredient within a specific recipe. It ensures you can't add the same ingredient twice to one recipe (unique_together).
 
-[x] Implement recipe list/detail views (Ex 2.5)
+Testing
+Wrote tests using Django's TestCase.
 
-[x] Create HTML templates for UI (Ex 2.4, 2.5, 2.7)
+Model Tests (recipes/tests.py): Check things like making sure cook_time_minutes is positive, ingredients are unique within a recipe, and the get_absolute_url() method works.
 
-[x] Add URL routing for all apps (Ex 2.4, 2.5, 2.6, 2.7)
+Form Tests (recipes/tests/test_forms.py): Check that the RecipeSearchForm validates correctly (e.g., accepts empty fields, rejects invalid cooking times).
 
-[x] Implement recipe image uploads (Ex 2.5)
+View Tests (recipes/tests/tests_views.py): Check that the search page requires login, handles GET and POST requests correctly, filters results properly based on different criteria (name, ingredients, time, difficulty), and includes chart data when requested.
 
-[x] Add User Authentication & Protect Views (Ex 2.6)
+Run tests locally using python manage.py test recipes. All tests pass! ✅ (See test-report.jpg screenshot).
 
-[x] Add difficulty field to Recipe model (Ex 2.7)
+Development Workflow
+Followed a pretty standard Git workflow:
 
-[x] Create RecipeSearchForm (Ex 2.7)
+Work on a feature (e.g., adding search).
 
-[x] Implement recipe_search view with filtering (Ex 2.7)
+Test it locally (runserver, manage.py test).
 
-[x] Integrate data visualization charts (Ex 2.7)
+Commit changes (git add ., git commit -m "Added search feature").
 
-[x] Write tests for search form and view (Ex 2.7)
+Push to GitHub (git push origin main).
 
-[x] Create About Me page with consistent styling (Phase 1)
+During Exercise 2.8, added deployment: Push to Heroku (git push heroku main).
 
-[ ] To Do (Ex 2.8): Configure for deployment (settings, static files).
+Test on the live Heroku site. Repeat if necessary!
 
-[ ] To Do (Ex 2.8): Deploy application to a PaaS (e.g., Render).
+Key Challenges & Solutions
+This project, especially deployment, wasn't always smooth sailing! Main hurdles included:
 
-[ ] Implement recipe creation/editing via forms (Future Exercise).
+Heroku Free Tier Gone: The course assumed a free database was available, but it wasn't. Had to switch to a paid Heroku PostgreSQL plan.
 
-## Future Enhancements
-- User recipe creation/editing via Forms
-- Personalized recipe collections per user
-- Data analysis enhancements (more chart types, filtering options)
-- Advanced filtering and sorting
-- Mobile app integration
-- Social sharing features
+Encoding Hell: Migrating recipe data from my Windows SQLite (Latin-1) to Heroku's PostgreSQL (UTF-8) failed due to accented characters. Standard loaddata didn't work. Solution: Wrote a custom Python script using the Django ORM to read the data, fix the encoding, and load it directly.
 
-## Resources
-- [Django Documentation](https://docs.djangoproject.com/)
-- [Django REST Framework](https://www.django-rest-framework.org/)
-- [Render Deployment Guide](https://render.com/docs)
-- [WhiteNoise Documentation](http://whitenoise.evans.io/)
-- [Pandas Documentation](https://pandas.pydata.org/docs/)
-- [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
+Images Disappearing: Uploaded images vanished on Heroku because its filesystem isn't persistent. Solution: Changed the Recipe.pic model field to a CharField and updated all recipes to use an external placeholder image URL. A proper fix would involve cloud storage like S3.
 
-## Deliverables
+Forgetting Dependencies: Deployment failed until psycopg2-binary (PostgreSQL driver) was added to requirements.txt.
 
-Completed Django project source code for Exercises 2.1 - 2.7 + Phase 1.
+Migrations Ignored: Realized migrations/ was in .gitignore, preventing schema updates from reaching Heroku. Solution: Removed it from .gitignore and committed the migration files.
 
-Functional search page with filtering and dynamic chart generation.
+(More details in LEARNING_JOURNAL_2.8_(15).html)
 
-Professional About Me page with consistent global styling.
+Future Enhancements
+This app has a good foundation, but there's always more to add!
 
-Passing unit tests for models, URLs, forms, and views.
+Real Image Hosting: Integrate AWS S3 or similar for actual recipe photos.
 
-Production-ready deployment configuration.
+User Recipe Submissions: Add forms for users to create/edit their own recipes.
 
-Updated README.md and LEARNING_JOURNAL entries.
+User Profiles/Collections: Let users save favorite recipes.
 
-Required screenshots documenting functionality and testing.
+Ratings & Reviews: Allow users to rate recipes.
 
-## Technical Notes
+More Advanced Search: Add filtering by category, cuisine type, etc.
 
-pandas and matplotlib added to requirements.txt.
+Refactor/Improve: Clean up the CSS, maybe use Bootstrap more effectively.
 
-Matplotlib uses 'Agg' backend in views.py.
+Resources
+Django Documentation - The ultimate source!
 
-Charts embedded via base64 data URIs.
+Heroku Dev Center - Essential for deployment steps.
 
-Ingredient search uses Q objects for OR logic.
+WhiteNoise Docs - Explained static file serving.
 
-About Me page styling matches LEARNING_JOURNAL design standards for consistency.
+python-decouple Docs - For environment variables.
 
-Gunicorn configured as production WSGI server.
+Pandas & Matplotlib Docs - For the charting part.
 
-WhiteNoise handles static file compression and serving.
+Deliverables
+Live Website: https://recipe-app-ivan-cortes-8d505e6123c3.herokuapp.com/
 
-Environment variables managed via python-decouple for security.
+GitHub Repository (recipe-app): This repository containing all source code, tests, and config files.
 
-## Author & Links
+Exercise 2.8 Folder (PYTHON-ACHIEVEMENT-2 repo): Contains required screenshots, including test-report.jpg.
 
-**Ivan Cortes**
-- Portfolio: https://ivan-cortes-portfolio-v1.onrender.com/
-- LinkedIn: https://www.linkedin.com/in/ivan-cortes-murcia-22053953/
-- Twitter: https://x.com/IVENCOMUR
-- GitHub: https://github.com/ivencomur
+Learning Journals: Detailed journals for each exercise (like this one!) are included in the LEARNING_JOURNAL/ directory.
 
-## AI Assistance Note
+Technical Notes
+Data migration required a custom script (load_recipes_fixed.py) due to encoding issues between local SQLite (Latin-1) and production PostgreSQL (UTF-8).
 
-AI assistance was instrumental in this project for:
-- Integration of Pandas and Matplotlib with Django
-- Matplotlib Agg backend configuration
-- Base64 image encoding for chart embedding
-- Q object usage for complex database queries
-- Django Forms best practices
-- Production deployment configuration
-- Environment variable management with python-decouple
-- Static file configuration with WhiteNoise
+Image handling uses external placeholder URLs as a workaround for Heroku's ephemeral filesystem.
 
-All code was written and tested hands-on by the developer. AI served as a technical reference and debugging aid throughout the project lifecycle.
+Uses python-decouple for managing settings via environment variables (essential for security).
 
-## Screenshots List
-(Required screenshots per exercise, stored in PYTHON-ACHIEVEMENT-2 repo)
+Static files are served efficiently in production using WhiteNoise.
 
-Exercise 2.1: Project setup and initial structure
+Gunicorn is the production WSGI server.
 
-Exercise 2.2: Django project and app creation
+Procfile handles automatic database migrations on deployment (release command).
 
-Exercise 2.3: Database models and admin interface
+Author & Links
+Ivan Cortes
 
-Exercise 2.4: Views and templates rendering
+Portfolio: https://ivan-cortes-portfolio-v1.onrender.com/
 
-Exercise 2.5: Image uploads and media files
+LinkedIn: https://www.linkedin.com/in/ivan-cortes-murcia-22053953/
 
-Exercise 2.6: User authentication and login flow
+Twitter: https://x.com/IVENCOMUR
 
-Exercise 2.7: Search form, results table, bar chart, pie chart, line chart, passing tests
+GitHub: https://github.com/ivencomur
 
-Exercise 2.8: Deployment configuration and live URL verification
+AI Assistance Note
+Throughout Achievement 2, especially during the tricky deployment phase (Exercise 2.8), I used AI assistance as a technical resource. It was particularly helpful for:
 
-    Phase 1: About Me page with professional styling
+Navigating undocumented changes in Heroku's services (like the deprecated free database).
+
+Diagnosing and creating a solution for the complex data encoding problem during migration – something way outside the course material.
+
+Understanding PaaS architectural constraints like the ephemeral filesystem and suggesting workarounds (placeholder images).
+
+Providing correct, up-to-date configuration syntax for production tools (Gunicorn, WhiteNoise, dj-database-url, psycopg2).
+
+Helping interpret obscure error messages from Heroku logs.
+
+Think of it like having a senior dev available to consult when the official docs or course materials didn't cover a specific real-world problem. I still did all the coding, testing, debugging, and decision-making myself, but the AI provided crucial technical pointers that unblocked me multiple times, especially during the deployment phase. It definitely accelerated my learning by helping me solve problems I wouldn't have figured out quickly on my own.
+
+Screenshots (Evidence)
+(All screenshots are stored in the separate PYTHON-ACHIEVEMENT-2 repository, under the relevant Exercise folder, e.g., Exercise 2.8/screenshots/)
+
+Key screenshots demonstrating completion include:
+
+Local server running with recipes (01_Server_Running.jpg)
+
+About Me page rendering correctly (02_About_Me_Created.png)
+
+Passing tests output (03_Test_Run_Done.png saved as test-report.jpg)
+
+Admin panel accessible on Heroku (04_Admin_Panel.png)
+
+Heroku logs showing successful migrations (05_Migrations_Carried_On_Heroku.png)
+
+Logout success page on Heroku (06_LOgout_Ok.png)
+
+Login page functional on Heroku (07_Login_Functional.png)
+
+Recipe list rendering on Heroku with placeholder images (08_Login_FUnctional_Image_Placeholder_Erratic.png)
+
+(Plus screenshots from Exercises 2.1 through 2.7 documenting each stage)
